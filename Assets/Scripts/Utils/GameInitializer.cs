@@ -5,7 +5,7 @@
 /// </summary>
 public class GameInitializer : MonoBehaviour
 {
-	void Awake()
+	private void Awake()
     {
         ConfigurationUtils.Initialize();
         EventManager.Initialize();

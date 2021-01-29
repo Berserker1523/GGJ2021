@@ -65,7 +65,7 @@ public class ConfigurationData
         catch(Exception e)
         {
             Debug.LogError(e);
-            SetDeafultValues();
+            SetDefaultValues();
         }
         finally
         {
@@ -80,7 +80,7 @@ public class ConfigurationData
 
     #region Methods
 
-    private void SetDeafultValues()
+    private void SetDefaultValues()
     {
         values.Clear();
         values.Add(ConfigurationDataValueName.Configuration1, 1);
