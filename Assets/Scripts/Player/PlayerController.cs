@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float movementSpeed;
+    private float movementSpeed;
     [SerializeField] private LayerMask solidObjectsLayer;
     [SerializeField] private GameObject lantern;
 
@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        movementSpeed = ConfigurationUtils.PlayerMovementSpeed;
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
