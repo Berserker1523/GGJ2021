@@ -5,5 +5,6 @@ public enum ConfigurationDataValueName
 {
     PlayerMovementSpeed,
     LanternTotalBattery,
-    BatterySpawnSeconds
+    BatterySpawnSeconds,
+    PlayerLifes
 }

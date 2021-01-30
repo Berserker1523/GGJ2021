@@ -4,49 +4,93 @@ using UnityEngine.Experimental.Rendering.Universal;
 public class Lantern : MonoBehaviour
 {
     private float lanternTotalBattery;
-    
+    private bool canTurnOn = true;
+
     private Light2D light2D;
-    private Collider2D collider2D;
-    private CountdownTimer lanternBatteryDuration;
+    private Collider2D lanternCollider;
+    private CountdownTimer lanternBattery;
 
     private void Start()
     {
         lanternTotalBattery = ConfigurationUtils.LanternTotalBattery;
 
         light2D = GetComponent<Light2D>();
-        collider2D = GetComponent<Collider2D>();
+        lanternCollider = GetComponent<Collider2D>();
 
-        lanternBatteryDuration = gameObject.AddComponent<CountdownTimer>();
-        lanternBatteryDuration.AddTimerFinishedListener(TurnOffLantern);
-        TurnOnLantern();
+        lanternBattery = gameObject.AddComponent<CountdownTimer>();
+        lanternBattery.AddTimerFinishedListener(TurnOff);
+        lanternBattery.Duration = lanternTotalBattery;
+        TurnOn();
 
         EventManager.AddListener(EventName.BatteryPicked, RechargeBattery);
     }
 
-    /*private void Update()
+    private void Update()
     {
-        Debug.Log(lanternBatteryDuration.TimeLeft);
-    }*/
+        if (Input.GetButtonDown("Jump") && canTurnOn && lanternBattery.TimeLeft > 0)
+        {
+            if (lanternBattery.Running)
+            {
+                Pause();
+            }
+            else{
+                UnPause();
+            }
+            
+        }
+    }
 
-    private void TurnOnLantern()
+    private void Pause()
+    {
+        lanternBattery.Running = false;
+        TurnOff();
+    }
+
+    private void UnPause()
+    {
+        TurnOn();
+        lanternBattery.Running = true;
+    }
+
+    public void PauseDueToDamage()
+    {
+        canTurnOn = false;
+        if (lanternBattery.Running)
+        {
+            Pause();
+        }
+    }
+
+    public void UnPauseDueToDamage()
+    {
+        canTurnOn = true;
+        if (lanternBattery.Running)
+        {
+            UnPause();
+        }
+    }
+
+    private void TurnOn()
     {
         
         light2D.enabled = true;
-        collider2D.enabled = true;
+        lanternCollider.enabled = true;
+        
+        lanternBattery.Run();
+
         AudioManager.Play(AudioClipName.DoubleLanternSwitch);
-        lanternBatteryDuration.Duration = lanternTotalBattery;
-        lanternBatteryDuration.Run();
     }
 
-    private void TurnOffLantern()
+    private void TurnOff()
     {
-        AudioManager.Play(AudioClipName.LanternSwitch);
         light2D.enabled = false;
-        collider2D.enabled = false;
+        lanternCollider.enabled = false;
+        AudioManager.Play(AudioClipName.LanternSwitch);
     }
 
     private void RechargeBattery(int unused)
     {
-        TurnOnLantern();
+        lanternBattery.Duration = lanternTotalBattery;
+        TurnOn();
     }
 }

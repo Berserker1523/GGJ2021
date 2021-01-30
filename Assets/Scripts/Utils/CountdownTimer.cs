@@ -31,18 +31,8 @@ public class CountdownTimer : MonoBehaviour
 	/// <value>duration</value>
 	public float Duration
     {
-		set
-        {
-			if (!running)
-            {
-				totalSeconds = value;
-			}
-		}
-
-        get
-        {
-			return totalSeconds;
-        }
+		set{ totalSeconds = value; }
+        get{ return totalSeconds; }
 	}
 	
 	/// <summary>
@@ -61,6 +51,7 @@ public class CountdownTimer : MonoBehaviour
 	/// <value>true if running; otherwise, false.</value>
 	public bool Running
     {
+        set { running = value; }
 		get { return running; }
 	}
 
@@ -72,11 +63,6 @@ public class CountdownTimer : MonoBehaviour
     #endregion
 
     #region Methods
-
-	public void AddSeconds(int seconds)
-    {
-		totalSeconds += seconds;
-    }
 
     /// <summary>
     /// Update is called once per frame
