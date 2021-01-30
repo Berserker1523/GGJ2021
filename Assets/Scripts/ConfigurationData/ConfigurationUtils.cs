@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-/// <summary>
+﻿/// <summary>
 /// Provides access to configuration data
 /// </summary>
 public static class ConfigurationUtils
