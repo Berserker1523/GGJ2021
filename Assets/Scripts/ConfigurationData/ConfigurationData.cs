@@ -32,6 +32,11 @@ public class ConfigurationData
         get { return values[ConfigurationDataValueName.BatterySpawnSeconds]; }
     }
 
+    public int PlayerLifes 
+    {
+        get { return (int)values[ConfigurationDataValueName.PlayerLifes]; }    
+    }
+
     #endregion
 
     #region Constructor
@@ -81,9 +86,13 @@ public class ConfigurationData
     private void SetDefaultValues()
     {
         values.Clear();
+        //
+        //Set up for WebGL Build with final values
+        //
         values.Add(ConfigurationDataValueName.PlayerMovementSpeed, 5);
         values.Add(ConfigurationDataValueName.LanternTotalBattery, 10);
         values.Add(ConfigurationDataValueName.BatterySpawnSeconds, 5);
+        values.Add(ConfigurationDataValueName.PlayerLifes, 3);
     }
 
     #endregion

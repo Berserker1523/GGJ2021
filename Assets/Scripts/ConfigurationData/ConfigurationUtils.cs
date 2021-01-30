@@ -22,6 +22,11 @@ public static class ConfigurationUtils
         get { return configurationData.BatterySpawnSeconds; }
     }
 
+    public static int PlayerLifes
+    {
+        get { return configurationData.PlayerLifes; }
+    }
+
     #endregion
 
     /// <summary>
