@@ -13,7 +13,7 @@ public class Battery : IntEventInvoker
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == CustomTag.Player.ToString())
+        if (collision.gameObject.CompareTag(CustomTag.Player.ToString()))
         {
             batteryPickedEvent.Invoke(0);
             gameObject.SetActive(false);
