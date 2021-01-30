@@ -3,4 +3,5 @@
 /// </summary>
 public enum EventName
 {
+    BatteryPicked
 }

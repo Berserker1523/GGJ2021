@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-/// <summary>
+﻿/// <summary>
 /// Provides access to configuration data
 /// </summary>
 public static class ConfigurationUtils
@@ -9,20 +7,19 @@ public static class ConfigurationUtils
 
     #region Properties
 
-    /// <summary>
-    /// Configuration1
-    /// </summary>
-    public static float Configuration1
+    public static float PlayerMovementSpeed
     {
-        get { return configurationData.Configuration1; }
+        get { return configurationData.PlayerMovementSpeed; }
     }
 
-    /// <summary>
-    /// Configuration2
-    /// </summary>
-    public static int Configuration2
+    public static float LanternTotalBattery
     {
-        get { return configurationData.Configuration2; }
+        get { return configurationData.LanternTotalBattery; }
+    }
+
+    public static float BatterySpawnSeconds
+    {
+        get { return configurationData.BatterySpawnSeconds; }
     }
 
     #endregion
