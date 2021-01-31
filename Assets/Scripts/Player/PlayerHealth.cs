@@ -18,7 +18,7 @@ public class PlayerHealth : IntEventInvoker
 
     private void TakeDamage(int unused)
     {
-        if(lifes == 0)
+        if(lifes == 1)
         {
             AudioManager.Play(AudioClipName.Susto2);
             gameOverEvent.Invoke(0);

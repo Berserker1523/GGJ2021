@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.53400004, y: 0.85118973}
   m_AnchorMax: {x: 0.8264376, y: 0.95500004}
-  m_AnchoredPosition: {x: -0.56573486, y: -261.18}
+  m_AnchoredPosition: {x: -0.5656738, y: -261.17993}
   m_SizeDelta: {x: -1.1313477, y: 1.902771}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9001281733307904643
@@ -618,6 +618,7 @@ MonoBehaviour:
   lifeImage: {fileID: 4525130358310523438, guid: cc7b0c644a8ed744ca6df7382ef40b19,
     type: 3}
   lifeImageContainer: {fileID: 2592644253089878156}
+  gameOverMenu: {fileID: 8770783974419691261}
 --- !u!1 &2592644253414328257
 GameObject:
   m_ObjectHideFlags: 0
@@ -1307,7 +1308,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1222206199015416724
 RectTransform:
   m_ObjectHideFlags: 0

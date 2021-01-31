@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HUD : MonoBehaviour
 {
     [SerializeField] private GameObject lifeImage;
     [SerializeField] private GameObject lifeImageContainer;
+    [SerializeField] private GameObject gameOverMenu;
     private int playerLifes;
     private GameObject[] inGameLifes;
 
@@ -15,6 +14,7 @@ public class HUD : MonoBehaviour
         FillLifes();
 
         EventManager.AddListener(EventName.DamageReceived, HandleDamageReceived);
+        EventManager.AddListener(EventName.GameOver, HandleGameOver);
     }
 
     private void FillLifes() 
@@ -42,5 +42,10 @@ public class HUD : MonoBehaviour
                 break;
             }
         }
+    }
+
+    private void HandleGameOver(int unused)
+    {
+        gameOverMenu.SetActive(true);
     }
 }

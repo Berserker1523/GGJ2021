@@ -12,7 +12,7 @@ public enum MovementSide
 }
 
 [RequireComponent(typeof(GhostMovement))]
-public class GhostController : MonoBehaviour
+public class GhostController : IntEventInvoker
 {
     /// <summary>
     /// Movement pattern that a ghost is going to follow 
@@ -97,6 +97,24 @@ public class GhostController : MonoBehaviour
     {
         //Play cool animation
         spawnManager.KillGhost(killedGhost);
+    }
+
+    private DamageReceivedEvent damageReceived;
+    private void Start()
+    {
+        damageReceived = new DamageReceivedEvent();
+        unityEvents.Add(EventName.DamageReceived, damageReceived);
+        EventManager.AddInvoker(EventName.DamageReceived, this);
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag(CustomTag.Player.ToString()))
+        {
+            GhostKilled(gameObject);
+            damageReceived.Invoke(0);
+        }
     }
 
     private bool CanMove()

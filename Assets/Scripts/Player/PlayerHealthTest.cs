@@ -18,5 +18,7 @@
     private void hit()
     {
         dm.Invoke(0);
+        takeDamage.Duration = 5f;
+        takeDamage.Run();
     }
 }
