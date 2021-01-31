@@ -8,6 +8,7 @@ public class Lantern : MonoBehaviour
 
     private Light2D light2D;
     private Collider2D lanternCollider;
+    [HideInInspector]
     public CountdownTimer lanternBattery;
 
     private void Start()
