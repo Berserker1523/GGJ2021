@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] private Transform[] ghostPrefabs;
+    [SerializeField] private Transform ghostPrefab;
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private int MinimumGhostsAlive;
     [SerializeField] private int MaximumGhostsAlive;
@@ -18,19 +19,12 @@ public class SpawnManager : MonoBehaviour
     private readonly Vector3 poolSpawnPosition = new Vector3(2000,2000,2000);
     private void Awake()
     {
-        int counter = 0;
         for (int i = 0; i < MaximumGhostsAlive; i++)
         {
-            if (ghostPrefabs.Length <= 0)
-            {
-                break;
-            }
-            
-            if (++counter >= ghostPrefabs.Length) counter = 0;
-
-            GameObject spawnedGhost = Instantiate(ghostPrefabs[counter].gameObject, poolSpawnPosition,
+            GameObject spawnedGhost = Instantiate(ghostPrefab.gameObject, poolSpawnPosition,
                 Quaternion.identity);
             spawnedGhost.SetActive(false);
+            spawnedGhost.GetComponent<GhostController>().GhostID = i;
             
             ghostsPool.Add(spawnedGhost);
         }
@@ -44,21 +38,17 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    public void DecreaseGhostCount()
-    {
-        ghostCount -= 1;
-    }
-
     public void KillGhost(GameObject killedGhost)
     {
-        GameObject ghost = inGameGhosts.Find(x => x.name == killedGhost.name);
+        GhostController ghost = killedGhost.GetComponent<GhostController>();
+        GameObject spawnedGhost = inGameGhosts.Find(x => x.GetComponent<GhostController>().GhostID == ghost.GhostID);
         inGameGhosts.Remove(killedGhost);
 
-        ghost.transform.position = poolSpawnPosition;
-        ghost.SetActive(false);
+        spawnedGhost.transform.position = poolSpawnPosition;
+        spawnedGhost.gameObject.SetActive(false);
 
         ghostCount--;
-        ghostsPool.Add(ghost);
+        ghostsPool.Add(spawnedGhost);
     } 
     
     private void SpawnGhost()
@@ -71,7 +61,8 @@ public class SpawnManager : MonoBehaviour
         ghost.transform.position = spawnPoints[currentSpawnPoint].position;
         ghost.SetActive(true);
 
-        currentSpawnPoint++;
+        if (++currentSpawnPoint >= spawnPoints.Length) currentSpawnPoint = 0;
+
         ghostCount++;
         
         inGameGhosts.Add(ghost);

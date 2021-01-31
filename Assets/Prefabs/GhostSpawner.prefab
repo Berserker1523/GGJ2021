@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1417423431638771045
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1354211173018709352}
+  m_Layer: 0
+  m_Name: SpawnPoint (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1354211173018709352
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417423431638771045}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.3, y: 0.16, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3339052783792554470}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3339052782658624535
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,7 +100,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3339052783792554470}
   - component: {fileID: 3339052783792554471}
-  - component: {fileID: 3339052783792554456}
   m_Layer: 0
   m_Name: GhostSpawner
   m_TagString: Untagged
@@ -93,6 +122,7 @@ Transform:
   - {fileID: 3339052783088942804}
   - {fileID: 3339052782658624534}
   - {fileID: 3339052784319154957}
+  - {fileID: 1354211173018709352}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -108,41 +138,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6094395be2a815418203a37f1da4139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ghostPrefabs: []
+  ghostPrefab: {fileID: 5440489888657642127, guid: 86951aafe8440f04e90384bacefcb772,
+    type: 3}
   spawnPoints:
   - {fileID: 3339052784030925332}
   - {fileID: 3339052783088942804}
   - {fileID: 3339052782658624534}
   - {fileID: 3339052784319154957}
-  MinimumGhostsAlive: 3
+  - {fileID: 1354211173018709352}
+  MinimumGhostsAlive: 5
   MaximumGhostsAlive: 10
---- !u!114 &3339052783792554456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3339052783792554457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aaeda6f6eb8fb140bd69a93e629b16f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: e57d8296e2d508943957355d862f34d8, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3339052783792554471}
-        m_MethodName: DecreaseGhostCount
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &3339052784030925333
 GameObject:
   m_ObjectHideFlags: 0
