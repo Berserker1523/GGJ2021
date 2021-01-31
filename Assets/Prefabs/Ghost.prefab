@@ -155,7 +155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b50ab301a6d67884888b70efc48c52c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSide: feffffffffffffff
+  movementSide: feffffffffffffff0100000002000000
   ignoreCollision:
     serializedVersion: 2
     m_Bits: 256
+  decorationCollider: {fileID: 0}
