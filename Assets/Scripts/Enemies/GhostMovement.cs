@@ -15,7 +15,7 @@ public class GhostMovement : MonoBehaviour
 
     public void Move(Vector2 movementDirection)
     {
-        ghostRigidbody.velocity = movementDirection;
+        ghostRigidbody.velocity = movementDirection * speed;
     }
 }
 

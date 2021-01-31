@@ -17,28 +17,32 @@ public class GhostController : MonoBehaviour
     /// Movement pattern that a ghost is going to follow 
     /// </summary>
     [SerializeField] private MovementSide[] movementSide;
-    
+
     private GhostMovement ghostMovement;
     private Vector3 currentMovementDirection;
     private int currentDirection;
-    
+
     private bool intersectionTouched;
     private bool added;
 
     private SpawnManager spawnManager;
-    
+
     private void Awake()
     {
         ghostMovement = GetComponent<GhostMovement>();
         currentMovementDirection = EnumUtils.ConvertToVector(movementSide[currentDirection]);
         spawnManager = FindObjectOfType<SpawnManager>();
     }
-    
+
     private void FixedUpdate()
     {
         if (CanMove())
         {
             ghostMovement.Move(currentMovementDirection);
+        }
+        else
+        {
+            NextMovementInstruction();
         }
 
         if (intersectionTouched)
@@ -48,26 +52,16 @@ public class GhostController : MonoBehaviour
         }
     }
 
-    private bool CanMove()
-    {
-        var raycast = Physics2D.Raycast(transform.position, transform.right, 1);
-
-        return !raycast.collider.CompareTag("Wall");
-    }
-
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.bounds.Contains(GetComponent<Collider2D>().bounds.min) && other.bounds.Contains(GetComponent<Collider2D>().bounds.max))
+        if (other.bounds.Contains(GetComponent<Collider2D>().bounds.min) &&
+            other.bounds.Contains(GetComponent<Collider2D>().bounds.max))
         {
             intersectionTouched = other.gameObject.CompareTag("Intersection");
+            
             if (intersectionTouched && !added)
             {
-                added = true;
-                
-                if (++currentDirection >= movementSide.Length)
-                {
-                    currentDirection = 0;
-                }
+                NextMovementInstruction();
             }
         }
     }
@@ -76,12 +70,30 @@ public class GhostController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Intersection"))
         {
-            added = false;    
+            added = false;
         }
     }
 
     public void GhostKilled(GameObject killedGhost)
     {
+        //Play cool animation
         spawnManager.KillGhost(killedGhost);
+    }
+
+    private bool CanMove()
+    {
+        var raycast = Physics2D.Raycast(transform.position, transform.right, 1);
+
+        return !raycast.collider.CompareTag("Wall");
+    }
+
+    private void NextMovementInstruction()
+    {
+        added = true;
+
+        if (++currentDirection >= movementSide.Length)
+        {
+            currentDirection = 0;
+        }
     }
 }

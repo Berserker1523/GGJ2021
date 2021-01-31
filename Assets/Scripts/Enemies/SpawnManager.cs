@@ -21,6 +21,11 @@ public class SpawnManager : MonoBehaviour
         int counter = 0;
         for (int i = 0; i < MaximumGhostsAlive; i++)
         {
+            if (ghostPrefabs.Length <= 0)
+            {
+                break;
+            }
+            
             if (++counter >= ghostPrefabs.Length) counter = 0;
 
             GameObject spawnedGhost = Instantiate(ghostPrefabs[counter].gameObject, poolSpawnPosition,
@@ -55,6 +60,8 @@ public class SpawnManager : MonoBehaviour
     
     private void SpawnGhost()
     {
+        if(ghostsPool.Count <= 0) return;
+        
         GameObject ghost = ghostsPool[0];
         ghostsPool.RemoveAt(0);
 
