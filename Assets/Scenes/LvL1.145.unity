@@ -459,6 +459,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 670c2dabe73964a499b32c90e43fac73, type: 3}
+--- !u!1 &603423817 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8770783974419691261, guid: 9ef0f11cd51e0844bb9a9f74a96b4939,
+    type: 3}
+  m_PrefabInstance: {fileID: 1140549540}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &612489428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -788,6 +794,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 2592644253106045557, guid: 9ef0f11cd51e0844bb9a9f74a96b4939,
+        type: 3}
+      propertyPath: gameOverMenu
+      value: 
+      objectReference: {fileID: 603423817}
     - target: {fileID: 2592644253414328256, guid: 9ef0f11cd51e0844bb9a9f74a96b4939,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -803,6 +814,11 @@ PrefabInstance:
       propertyPath: lantern
       value: 
       objectReference: {fileID: 3126665622937394037}
+    - target: {fileID: 8770783974419691261, guid: 9ef0f11cd51e0844bb9a9f74a96b4939,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ef0f11cd51e0844bb9a9f74a96b4939, type: 3}
 --- !u!43 &1247303516
