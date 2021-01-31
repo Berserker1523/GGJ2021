@@ -10,9 +10,9 @@ public class UIManager : MonoBehaviour
     public GameObject[] screens;
     public GameObject[] storyScreen;
 
-    private void TurnOffScreens() 
+    private void TurnOffScreens()
     {
-        foreach (GameObject go in screens) 
+        foreach (GameObject go in screens)
         {
             go.SetActive(false);
         }
@@ -24,7 +24,7 @@ public class UIManager : MonoBehaviour
             go.SetActive(false);
         }
     }
-    public void ActivateScreen(int index) 
+    public void ActivateScreen(int index)
     {
         TurnOffScreens();
         screens[index].SetActive(true);
@@ -34,9 +34,17 @@ public class UIManager : MonoBehaviour
         TurnOffStoryScreens();
         storyScreen[index].SetActive(true);
     }
-    public void StartGame() 
+    public void StartGame()
     {
         SceneManager.LoadScene(1);
+    }
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+    public void ExitGame()
+    {
+        Application.Quit();
     }
     
 }
