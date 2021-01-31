@@ -38,6 +38,10 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
     public void ExitGame()
     {
         Application.Quit();
