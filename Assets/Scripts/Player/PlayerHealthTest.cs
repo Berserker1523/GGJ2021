@@ -11,7 +11,7 @@
 
         takeDamage = gameObject.AddComponent<CountdownTimer>();
         takeDamage.AddTimerFinishedListener(hit);
-        takeDamage.Duration = 11f;
+        takeDamage.Duration = 5f;
         takeDamage.Run();
     }
 
