@@ -12,7 +12,7 @@ public class CountdownTimer : MonoBehaviour
 	private float totalSeconds = 0;
 	
 	// timer execution
-	private float elapsedSeconds = 0;
+	public float elapsedSeconds = 0;
 	private bool running = false;
 	
 	// support for Finished property
