@@ -618,6 +618,7 @@ MonoBehaviour:
   lifeImage: {fileID: 4525130358310523438, guid: cc7b0c644a8ed744ca6df7382ef40b19,
     type: 3}
   lifeImageContainer: {fileID: 2592644253089878156}
+  gameOverMenu: {fileID: 8770783974419691261}
 --- !u!1 &2592644253414328257
 GameObject:
   m_ObjectHideFlags: 0
