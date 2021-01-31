@@ -14,9 +14,11 @@ public class GhostInteractuable : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(CustomTag.Ghost.ToString())){
+        if (collision.gameObject.CompareTag(CustomTag.Ghost.ToString()))
+        {
             animator.SetBool("GhostAround", true);
         }
     }

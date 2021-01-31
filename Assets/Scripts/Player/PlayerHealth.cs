@@ -17,10 +17,11 @@
     {
         if(lifes == 0)
         {
+            AudioManager.Play(AudioClipName.Susto2);
             gameOverEvent.Invoke(0);
             return;
         }
-
+        AudioManager.Play(AudioClipName.Susto1);
         lifes -= 1;
     }
 }
