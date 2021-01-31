@@ -1,4 +1,7 @@
-﻿public class PlayerHealth : IntEventInvoker
+﻿using System;
+using UnityEngine;
+
+public class PlayerHealth : IntEventInvoker
 {
     private int lifes;
     private GameOverEvent gameOverEvent;
@@ -22,5 +25,13 @@
         }
 
         lifes -= 1;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ghost"))
+        {
+            
+        }
     }
 }
