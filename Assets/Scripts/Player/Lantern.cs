@@ -8,7 +8,8 @@ public class Lantern : MonoBehaviour
 
     private Light2D light2D;
     private Collider2D lanternCollider;
-    private CountdownTimer lanternBattery;
+    [HideInInspector]
+    public CountdownTimer lanternBattery;
 
     private void Start()
     {
@@ -20,7 +21,7 @@ public class Lantern : MonoBehaviour
         lanternBattery = gameObject.AddComponent<CountdownTimer>();
         lanternBattery.AddTimerFinishedListener(TurnOff);
         lanternBattery.Duration = lanternTotalBattery;
-        TurnOn();
+        lanternBattery.Run();
 
         EventManager.AddListener(EventName.BatteryPicked, RechargeBattery);
     }
@@ -72,12 +73,8 @@ public class Lantern : MonoBehaviour
 
     private void TurnOn()
     {
-        
         light2D.enabled = true;
         lanternCollider.enabled = true;
-        
-        lanternBattery.Run();
-
         AudioManager.Play(AudioClipName.DoubleLanternSwitch);
     }
 
@@ -91,6 +88,6 @@ public class Lantern : MonoBehaviour
     private void RechargeBattery(int unused)
     {
         lanternBattery.Duration = lanternTotalBattery;
-        TurnOn();
+        lanternBattery.elapsedSeconds = 0;
     }
 }
