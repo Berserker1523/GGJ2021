@@ -4,5 +4,7 @@
 public enum AudioClipName
 {
     LanternSwitch,
-    DoubleLanternSwitch
+    DoubleLanternSwitch,
+    Susto1,
+    Susto2
 }
