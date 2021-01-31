@@ -1,5 +1,6 @@
 ﻿public enum CustomTag
 {
     Battery,
-    Player
+    Player,
+    Ghost
 }
