@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,20 +17,24 @@ public class ConfigurationData
 
     #region Properties
 
-    /// <summary>
-    /// Configuration1
-    /// </summary>
-    public float Configuration1
+    public float PlayerMovementSpeed
     {
-        get { return values[ConfigurationDataValueName.Configuration1]; }
+        get { return values[ConfigurationDataValueName.PlayerMovementSpeed]; }
     }
 
-    /// <summary>
-    /// Configuration2
-    /// </summary>
-    public int Configuration2
+    public float LanternTotalBattery
     {
-        get { return (int)values[ConfigurationDataValueName.Configuration2]; }
+        get { return values[ConfigurationDataValueName.LanternTotalBattery]; }
+    }
+
+    public float BatterySpawnSeconds
+    {
+        get { return values[ConfigurationDataValueName.BatterySpawnSeconds]; }
+    }
+
+    public int PlayerLifes 
+    {
+        get { return (int)values[ConfigurationDataValueName.PlayerLifes]; }    
     }
 
     #endregion
@@ -83,8 +86,13 @@ public class ConfigurationData
     private void SetDefaultValues()
     {
         values.Clear();
-        values.Add(ConfigurationDataValueName.Configuration1, 1);
-        values.Add(ConfigurationDataValueName.Configuration2, 2);
+        //
+        //Set up for WebGL Build with final values
+        //
+        values.Add(ConfigurationDataValueName.PlayerMovementSpeed, 5);
+        values.Add(ConfigurationDataValueName.LanternTotalBattery, 10);
+        values.Add(ConfigurationDataValueName.BatterySpawnSeconds, 5);
+        values.Add(ConfigurationDataValueName.PlayerLifes, 3);
     }
 
     #endregion

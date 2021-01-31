@@ -3,4 +3,7 @@
 /// </summary>
 public enum EventName
 {
+    BatteryPicked,
+    DamageReceived,
+    GameOver
 }

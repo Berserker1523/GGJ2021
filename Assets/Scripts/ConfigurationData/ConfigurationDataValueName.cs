@@ -3,6 +3,8 @@
 /// </summary>
 public enum ConfigurationDataValueName
 {
-    Configuration1,
-    Configuration2
+    PlayerMovementSpeed,
+    LanternTotalBattery,
+    BatterySpawnSeconds,
+    PlayerLifes
 }

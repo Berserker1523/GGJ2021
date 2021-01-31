@@ -1,2 +1,4 @@
-Configuration1,1
-Configuration2,2
+PlayerMovementSpeed,5
+LanternTotalBattery,10
+BatterySpawnSeconds,5
+PlayerLifes,3
