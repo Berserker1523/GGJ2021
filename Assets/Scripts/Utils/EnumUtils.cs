@@ -14,7 +14,7 @@ public class EnumUtils
         }
         else
         {
-            horizontalValue = (int) side;
+            horizontalValue = (int) side/2;
             verticalValue = 0;
         }
 

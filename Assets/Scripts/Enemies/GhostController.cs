@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public enum MovementSide
 {
@@ -17,7 +18,9 @@ public class GhostController : MonoBehaviour
     /// Movement pattern that a ghost is going to follow 
     /// </summary>
     [SerializeField] private MovementSide[] movementSide;
-
+    [SerializeField] private LayerMask ignoreCollision;
+    [SerializeField] private Collider2D decorationCollider;
+    
     private GhostMovement ghostMovement;
     private Vector3 currentMovementDirection;
     private int currentDirection;
@@ -27,8 +30,15 @@ public class GhostController : MonoBehaviour
 
     private SpawnManager spawnManager;
 
+    private void OnEnable()
+    {
+        Physics2D.IgnoreCollision(decorationCollider, GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(GameObject.Find("SolidObjects").GetComponent<CompositeCollider2D>(), GetComponent<Collider2D>());
+    }
+
     private void Awake()
     {
+        decorationCollider = GameObject.Find("deco").GetComponent<CompositeCollider2D>();
         ghostMovement = GetComponent<GhostMovement>();
         currentMovementDirection = EnumUtils.ConvertToVector(movementSide[currentDirection]);
         spawnManager = FindObjectOfType<SpawnManager>();
@@ -38,11 +48,20 @@ public class GhostController : MonoBehaviour
     {
         if (CanMove())
         {
+            Debug.Log("Hola");
+            Debug.DrawRay(transform.position, currentMovementDirection, Color.red);
             ghostMovement.Move(currentMovementDirection);
         }
         else
         {
-            NextMovementInstruction();
+            if (!added)
+            {
+                NextMovementInstruction();
+            }
+
+            added = false;
+            currentMovementDirection = EnumUtils.ConvertToVector(movementSide[currentDirection]);
+            ghostMovement.Move(currentMovementDirection);
         }
 
         if (intersectionTouched)
@@ -82,14 +101,22 @@ public class GhostController : MonoBehaviour
 
     private bool CanMove()
     {
-        var raycast = Physics2D.Raycast(transform.position, transform.right, 1);
+        var raycast = Physics2D.Raycast(transform.position, currentMovementDirection, 1,ignoreCollision);
 
+        if (raycast.collider == null)
+        {
+            return true;
+        }
+        
+        Debug.Log(raycast.collider.name);
         return !raycast.collider.CompareTag("Wall");
     }
 
     private void NextMovementInstruction()
     {
         added = true;
+
+        currentDirection = Random.Range(0, movementSide.Length);
 
         if (++currentDirection >= movementSide.Length)
         {

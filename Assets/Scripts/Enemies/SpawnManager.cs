@@ -55,6 +55,9 @@ public class SpawnManager : MonoBehaviour
         inGameGhosts.Remove(killedGhost);
 
         ghost.transform.position = poolSpawnPosition;
+        ghost.SetActive(false);
+
+        ghostCount--;
         ghostsPool.Add(ghost);
     } 
     
@@ -67,6 +70,9 @@ public class SpawnManager : MonoBehaviour
 
         ghost.transform.position = spawnPoints[currentSpawnPoint].position;
         ghost.SetActive(true);
+
+        currentSpawnPoint++;
+        ghostCount++;
         
         inGameGhosts.Add(ghost);
     }
