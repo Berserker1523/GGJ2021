@@ -13,24 +13,27 @@ public enum MovementSide
 [RequireComponent(typeof(GhostMovement))]
 public class GhostController : MonoBehaviour
 {
+    /// <summary>
+    /// Movement pattern that a ghost is going to follow 
+    /// </summary>
     [SerializeField] private MovementSide[] movementSide;
-
+    
     private GhostMovement ghostMovement;
-    private Transform nextTile;
     private Vector3 currentMovementDirection;
     private int currentDirection;
     
     private bool intersectionTouched;
     private bool added;
-    
+
+    private SpawnManager spawnManager;
     
     private void Awake()
     {
         ghostMovement = GetComponent<GhostMovement>();
         currentMovementDirection = EnumUtils.ConvertToVector(movementSide[currentDirection]);
+        spawnManager = FindObjectOfType<SpawnManager>();
     }
-
-
+    
     private void FixedUpdate()
     {
         if (CanMove())
@@ -60,7 +63,11 @@ public class GhostController : MonoBehaviour
             if (intersectionTouched && !added)
             {
                 added = true;
-                currentDirection++;
+                
+                if (++currentDirection >= movementSide.Length)
+                {
+                    currentDirection = 0;
+                }
             }
         }
     }
@@ -71,5 +78,10 @@ public class GhostController : MonoBehaviour
         {
             added = false;    
         }
+    }
+
+    public void GhostKilled(GameObject killedGhost)
+    {
+        spawnManager.KillGhost(killedGhost);
     }
 }
