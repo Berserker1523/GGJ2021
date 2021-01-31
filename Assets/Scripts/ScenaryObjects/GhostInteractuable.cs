@@ -3,14 +3,14 @@
 public class GhostInteractuable : MonoBehaviour
 {
     private Animator animator;
-    CountdownTimer timer;
+    //CountdownTimer timer;
 
     private void Start()
     {
-        timer = gameObject.AddComponent<CountdownTimer>();
-        timer.Duration = 5f;
-        timer.AddTimerFinishedListener(delegate { animator.SetBool("GhostAround", true); });
-        timer.Run();
+        //timer = gameObject.AddComponent<CountdownTimer>();
+        //timer.Duration = 5f;
+        //timer.AddTimerFinishedListener(delegate { animator.SetBool("GhostAround", true); });
+        //timer.Run();
         animator = GetComponent<Animator>();
     }
 
