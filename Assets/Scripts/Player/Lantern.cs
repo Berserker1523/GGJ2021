@@ -1,8 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
 public class Lantern : MonoBehaviour
 {
+    [SerializeField] private GameEvent ghostKilled;
+    
     private float lanternTotalBattery;
     private bool canTurnOn = true;
 
@@ -89,5 +92,14 @@ public class Lantern : MonoBehaviour
     {
         lanternBattery.Duration = lanternTotalBattery;
         lanternBattery.elapsedSeconds = 0;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Ghost"))
+        {
+            other.GetComponent<GhostController>().GhostKilled(other.gameObject);
+        }
+        
     }
 }

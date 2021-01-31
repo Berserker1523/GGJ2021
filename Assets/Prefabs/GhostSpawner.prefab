@@ -70,7 +70,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3339052783792554470}
   - component: {fileID: 3339052783792554471}
-  - component: {fileID: 3339052783792554456}
   m_Layer: 0
   m_Name: GhostSpawner
   m_TagString: Untagged
@@ -108,7 +107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6094395be2a815418203a37f1da4139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ghostPrefabs: []
+  ghostPrefab: {fileID: 5440489888657642127, guid: 86951aafe8440f04e90384bacefcb772,
+    type: 3}
   spawnPoints:
   - {fileID: 3339052784030925332}
   - {fileID: 3339052783088942804}
@@ -116,33 +116,6 @@ MonoBehaviour:
   - {fileID: 3339052784319154957}
   MinimumGhostsAlive: 3
   MaximumGhostsAlive: 10
---- !u!114 &3339052783792554456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3339052783792554457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aaeda6f6eb8fb140bd69a93e629b16f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: e57d8296e2d508943957355d862f34d8, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3339052783792554471}
-        m_MethodName: DecreaseGhostCount
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &3339052784030925333
 GameObject:
   m_ObjectHideFlags: 0

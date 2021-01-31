@@ -29,6 +29,7 @@ public class GhostController : MonoBehaviour
     private bool added;
 
     private SpawnManager spawnManager;
+    public int GhostID { get; set; }
 
     private void OnEnable()
     {
@@ -48,7 +49,6 @@ public class GhostController : MonoBehaviour
     {
         if (CanMove())
         {
-            Debug.Log("Hola");
             Debug.DrawRay(transform.position, currentMovementDirection, Color.red);
             ghostMovement.Move(currentMovementDirection);
         }
